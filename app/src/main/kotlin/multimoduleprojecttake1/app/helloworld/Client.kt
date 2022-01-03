@@ -11,10 +11,14 @@ class HelloWorldClient(private val channel: ManagedChannel) : Closeable {
     private val stub: GreeterGrpcKt.GreeterCoroutineStub =
         GreeterGrpcKt.GreeterCoroutineStub(channel)
 
-    suspend fun greet(name: String, newName: String) {
-        val request = helloRequest { this.name = name; this.newName = newName }
-        val response = stub.sayHello(request)
-        println("Received: ${response.message}")
+    suspend fun greet(nameParam: String, newNameParam: String) {
+      val request = helloRequest {
+        name = nameParam
+        newName = newNameParam
+        food.addAll(listOf("taco", "pizza"))
+      }
+      val response = stub.sayHello(request)
+      println("Received: ${response.message}")
     }
 
     override fun close() {
