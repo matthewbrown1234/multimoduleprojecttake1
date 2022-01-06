@@ -1,15 +1,14 @@
-val kotlin_version: String by rootProject
 val ktor_version: String by project
 val logback_version: String by project
+val kotlinVersion: String by System.getProperties()
+
+version = "0.0.1"
 
 plugins {
-  `kotlin-dsl`
   application
-  kotlin
   id("multimoduleprojecttake1.kotlin-application-conventions")
 }
 
-version = "0.0.1"
 application {
   mainClass.set("multimoduleprojecttake1.web.ApplicationKt")
 }
@@ -25,9 +24,5 @@ dependencies {
   implementation("io.ktor:ktor-server-netty:$ktor_version")
   implementation("ch.qos.logback:logback-classic:$logback_version")
   testImplementation("io.ktor:ktor-server-tests:$ktor_version")
-  testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
-}
-
-repositories {
-  mavenCentral()
+  testImplementation("org.jetbrains.kotlin:kotlin-test-junit:${kotlinVersion}")
 }

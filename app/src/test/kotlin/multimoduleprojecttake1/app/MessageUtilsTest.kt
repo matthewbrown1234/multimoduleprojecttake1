@@ -4,12 +4,12 @@
 package multimoduleprojecttake1.app
 
 import multimoduleprojecttake1.app.helloworld.MessageUtils
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-import org.junit.jupiter.api.Assertions.assertEquals
-
 class MessageUtilsTest {
-    @Test fun testGetMessage() {
-        assertEquals("Hello      World!", MessageUtils.getMessage())
-    }
+  @Test
+  fun testGetMessage() {
+    assertEquals("Hello      World!", MessageUtils.getMessage())
+  }
 }

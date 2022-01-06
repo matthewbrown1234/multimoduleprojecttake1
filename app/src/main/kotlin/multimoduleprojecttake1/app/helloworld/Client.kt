@@ -7,36 +7,37 @@ import java.util.concurrent.TimeUnit
 import org.apache.commons.lang.StringUtils
 import org.apache.commons.lang.WordUtils
 
-class HelloWorldClient(private val channel: ManagedChannel) : Closeable {
-    private val stub: GreeterGrpcKt.GreeterCoroutineStub =
-        GreeterGrpcKt.GreeterCoroutineStub(channel)
+class HelloWorldClient(
+  private val channel: ManagedChannel
+) : Closeable {
+  private val stub: GreeterGrpcKt.GreeterCoroutineStub = GreeterGrpcKt.GreeterCoroutineStub(channel)
 
-    suspend fun greet(nameParam: String, newNameParam: String) {
-      val request = helloRequest {
-        name = nameParam
-        newName = newNameParam
-        food.addAll(listOf("taco", "pizza"))
-      }
-      val response = stub.sayHello(request)
-      println("Received: ${response.message}")
+  suspend fun greet(nameParam: String, newNameParam: String) {
+    val request = helloRequest {
+      name = nameParam
+      newName = newNameParam
+      food.addAll(listOf("taco", "pizza"))
     }
+    val response = stub.sayHello(request)
+    println("Received: ${response.message}")
+  }
 
-    override fun close() {
-        channel.shutdown().awaitTermination(5, TimeUnit.SECONDS)
-    }
+  override fun close() {
+    channel.shutdown().awaitTermination(5, TimeUnit.SECONDS)
+  }
 }
 
 
 suspend fun main() {
-    val tokens = StringUtils.split(MessageUtils.getMessage())
-    val result = StringUtils.join(tokens)
-    println(WordUtils.capitalize(result))
+  val tokens = StringUtils.split(MessageUtils.getMessage())
+  val result = StringUtils.join(tokens)
+  println(WordUtils.capitalize(result))
 
-    val port = 50051
+  val port = 50051
 
-    val channel = ManagedChannelBuilder.forAddress("localhost", port).usePlaintext().build()
+  val channel = ManagedChannelBuilder.forAddress("localhost", port).usePlaintext().build()
 
-    val client = HelloWorldClient(channel)
+  val client = HelloWorldClient(channel)
 
-    client.greet("world", "tacos")
+  client.greet("world", "tacos")
 }

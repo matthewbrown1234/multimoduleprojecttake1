@@ -1,11 +1,14 @@
+val kotlinVersion: String by System.getProperties()
+val coroutinesVersion: String by System.getProperties()
+
 plugins {
-    // Support convention plugins written in Kotlin. Convention plugins are build scripts in 'src/main' that automatically become available as plugins in the main build.
     `kotlin-dsl`
-    kotlin("jvm") version "1.5.31" // Compose Compiler required version
 }
 
+println("kotlinVersion ====> " + kotlinVersion)
+println("coroutines versions ====> " + coroutinesVersion)
+
 repositories {
-    // Use the plugin portal to apply community plugins in convention plugins.
     gradlePluginPortal()
     mavenLocal()
     mavenCentral()

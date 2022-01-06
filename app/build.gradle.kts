@@ -4,13 +4,14 @@ import com.google.protobuf.gradle.plugins
 import com.google.protobuf.gradle.protobuf
 import com.google.protobuf.gradle.protoc
 
+val coroutinesVersion: String by System.getProperties()
+println("coroutines versions ====> " + coroutinesVersion)
+
 plugins {
-    kotlin
     id("multimoduleprojecttake1.kotlin-application-conventions")
     id("com.google.protobuf") version "0.8.18"
 }
 
-val coroutinesVersion = "1.5.2"
 val grpcVersion = "1.39.0" // need to wait for grpc kotlin to move past this
 val protobufVersion = "3.19.1"
 val grpcKotlinVersion = "1.2.0" // CURRENT_GRPC_KOTLIN_VERSION
