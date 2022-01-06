@@ -5,7 +5,6 @@ val kotlinVersion: String by System.getProperties()
 version = "0.0.1"
 
 plugins {
-  application
   id("multimoduleprojecttake1.kotlin-application-conventions")
 }
 
