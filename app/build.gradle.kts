@@ -6,7 +6,6 @@ import com.google.protobuf.gradle.protoc
 
 plugins {
     kotlin
-    java
     id("multimoduleprojecttake1.kotlin-application-conventions")
     id("com.google.protobuf") version "0.8.18"
 }

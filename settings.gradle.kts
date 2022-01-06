@@ -8,4 +8,4 @@
  */
 
 rootProject.name = "multimoduleprojecttake1"
-include("app", "list", "utilities")
+include("app", "list", "utilities", "web")
