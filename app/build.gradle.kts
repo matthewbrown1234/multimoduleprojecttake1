@@ -5,16 +5,16 @@ import com.google.protobuf.gradle.protobuf
 import com.google.protobuf.gradle.protoc
 
 val coroutinesVersion: String by System.getProperties()
+val protobufKotlinVersion: String by System.getProperties()
+val grpcVersion: String by System.getProperties()
+val grpcKotlinVersion: String by System.getProperties()
+val protobufGradlePlugin: String by System.getProperties()
 println("coroutines versions ====> " + coroutinesVersion)
 
 plugins {
     id("multimoduleprojecttake1.kotlin-application-conventions")
     id("com.google.protobuf") version "0.8.18"
 }
-
-val grpcVersion = "1.39.0" // need to wait for grpc kotlin to move past this
-val protobufVersion = "3.19.1"
-val grpcKotlinVersion = "1.2.0" // CURRENT_GRPC_KOTLIN_VERSION
 
 dependencies {
     implementation("org.apache.commons:commons-text")
@@ -25,8 +25,8 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutinesVersion}")
     implementation("io.grpc:grpc-kotlin-stub:${grpcKotlinVersion}")
     implementation("io.grpc:grpc-protobuf:${grpcVersion}")
-    implementation("com.google.protobuf:protobuf-kotlin:${protobufVersion}")
-    implementation("com.google.protobuf:protobuf-gradle-plugin:0.8.18")
+    implementation("com.google.protobuf:protobuf-kotlin:${protobufKotlinVersion}")
+    implementation("com.google.protobuf:protobuf-gradle-plugin:${protobufGradlePlugin}")
 }
 
 sourceSets {
@@ -39,7 +39,7 @@ sourceSets {
 
 protobuf {
     protoc {
-        artifact = "com.google.protobuf:protoc:${protobufVersion}"
+        artifact = "com.google.protobuf:protoc:${protobufKotlinVersion}"
     }
     plugins {
         id("grpc") {
